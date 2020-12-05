@@ -1,0 +1,26 @@
+
+{
+    "name": "Luz 1",
+    "id": 01,
+    "power": "on"
+},{
+    "name": "Luz 2",
+    "id": 02,
+    "power": "off"
+},{
+    "name": "Luz 3",
+    "id": 03,
+    "power": "on"
+},{
+    "name": "Luz 4",
+    "id": 04,
+    "power": "off"
+},{
+    "name": "Luz 5",
+    "id": 05,
+    "power": "on"
+},{
+    "name": "Luz 6",
+    "id": 06,
+    "power": "off"
+}

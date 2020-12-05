@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "772534272676",
+    "firebase_url": "https://meuconforto-c4a46.firebaseio.com",
+    "project_id": "meuconforto-c4a46",
+    "storage_bucket": "meuconforto-c4a46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772534272676:android:19ee79ee23fa4094551c31",
+        "android_client_info": {
+          "package_name": "com.silvioviana.meuconforto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772534272676-46np50iihg5icb6i6hq7k9091v3bvptu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB90Q9nRRsvrz_iHisWNozvN5C-Hi7vUwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772534272676-46np50iihg5icb6i6hq7k9091v3bvptu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
