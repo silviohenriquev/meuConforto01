@@ -7,20 +7,21 @@ import {
     StyleSheet,
     Dimensions,
 } from 'react-native'
-import Equipament from './Equipament'
+import Room from './Room'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import commonStyles from '../commonStyles'
 
-export default class EquipamentList extends Component {
+export default class RoomList extends Component {
 
     render() {
         return(
             <View style={styles.container}>
-                <View style={styles.equipamentList}>
+                <View style={styles.roomList}>
                     <FlatList 
-                        data={this.props.equipaments}
-                        renderItem={({item}) => <Equipament
-                            togglePower={this.props.togglePower}
+                        horizontal={true}
+                        data={this.props.rooms}
+                        renderItem={({item}) => <Room
+                            toggleRoom={this.props.toggleRoom}
                             {...item}/>}/>
                 </View>
             </View>
@@ -35,10 +36,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    equipamentList: {
+    roomList: {
         flex: 1,
         margin: larguraTela*0.02,
-        marginTop: 0
     }
 })
 

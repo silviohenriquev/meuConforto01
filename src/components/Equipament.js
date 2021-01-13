@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {
     Text, 
     View, 
     TouchableWithoutFeedback,
-    StyleSheet
+    StyleSheet,
+    Dimensions,
 } from 'react-native'
 import commonStyles from '../commonStyles'
 import { Ionicons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
+import { render } from 'react-dom'
 
 export default props => {
     return(
@@ -36,6 +38,8 @@ function renderPowerIcon(power){
         )
     }
 }
+const larguraTela = Dimensions.get('window').width
+const alturaTela = Dimensions.get('window').height
 
 const styles = StyleSheet.create({
     container: {
@@ -43,10 +47,12 @@ const styles = StyleSheet.create({
         borderColor: commonStyles.colors.cinza,
         flexDirection: 'row',
         borderRadius: 20,
-        marginHorizontal: 30,
-        marginVertical: 5,
+        marginHorizontal: 0,
+        marginTop: larguraTela*0.02,
+        marginBottom: 0,
         backgroundColor: commonStyles.colors.branco,
-        height: 100 
+        height: alturaTela*0.15,
+        width: larguraTela*0.86,
     },titleContainer: {
         flex:6,
         justifyContent: 'flex-start',
