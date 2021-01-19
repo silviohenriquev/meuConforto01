@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "meuConfortov1",
-    "slug": "meuConfortov1",
+    "name": "myConfort",
+    "slug": "myConfort",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

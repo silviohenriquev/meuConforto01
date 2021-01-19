@@ -11,6 +11,8 @@ import { Ionicons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icon
 import { render } from 'react-dom'
 
 export default props => {
+
+    
     return(
         <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -44,13 +46,13 @@ const alturaTela = Dimensions.get('window').height
 const styles = StyleSheet.create({
     container: {
         borderWidth: 2,
-        borderColor: commonStyles.colors.cinza,
+        borderColor: '#eee',
         flexDirection: 'row',
         borderRadius: 20,
         marginHorizontal: 0,
         marginTop: larguraTela*0.02,
         marginBottom: 0,
-        backgroundColor: commonStyles.colors.branco,
+        backgroundColor: '#eee',
         height: alturaTela*0.15,
         width: larguraTela*0.86,
     },titleContainer: {
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: commonStyles.fontFamily,
-        fontSize: 25,
+        fontSize: 20,
         color: "black"
     },
     iconContainer: {

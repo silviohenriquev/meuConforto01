@@ -1,7 +1,10 @@
+
 export default {
-    fontFamily: '',
+    fontFamily: 'gotham-regular',
+    fontFamilyBold: 'gotham-bold',
+    
     colors: {
-        branco: '#FFFCF2',
+        branco: 'white',
         cinza: '#CCC5B9',
         grafite: '#403D39',
         preto: '#252422',

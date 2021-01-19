@@ -4,8 +4,11 @@ import {
     View,
     Text,
     ImageBackground,
-    Dimensions
+    Dimensions,
+    TouchableOpacity,
+    Platform
 } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import commonStyles from '../commonStyles'
 import EquipamentList from '../components/EquipamentList'
 import RoomList from '../components/RoomList'
@@ -39,7 +42,7 @@ class InitialPage extends Component {
                                 id: chave
                             })
                         }
-                        console.log(roomSelectedId)
+                        //console.log(roomSelectedId)
                         this.setState({equipaments, roomSelectedId})
                     }
                 })
@@ -79,21 +82,31 @@ class InitialPage extends Component {
     render(){
         return(
             <View style={styles.container}>
+                <View style={styles.background}>
+                    <View style={styles.iconArea}>
+                        <Text style={styles.pageTitle}>Initial Page</Text>
+                        <TouchableOpacity 
+                            onPress={() => this.props.navigation.openDrawer()}>
+                            <Icon name='bars'
+                                size={20} color={commonStyles.colors.secondary} />
+                        </TouchableOpacity>
+                    </View>
                     <View style={styles.header}>
-                        <Text style={styles.titulo}>Bem-vindo à sua casa, Silvio!</Text>
+                        <Text style={styles.titulo}>Welcome, Silvio!</Text>
                     </View>
-                    <View style={styles.containerRoomList}>
-                        <RoomList
-                            {...this.state}
-                            style={styles.equipamentList}
-                            toggleRoom = {this.toggleRoom}/>
-                    </View>
-                    <View style={styles.containerEquipamentList}>
-                        <EquipamentList
-                            {...this.state}
-                            style={styles.equipamentList}
-                            togglePower = {this.togglePower}/>
-                    </View>
+                </View>
+                <View style={styles.containerRoomList}>
+                    <RoomList
+                        {...this.state}
+                        style={styles.equipamentList}
+                        toggleRoom = {this.toggleRoom}/>
+                </View>
+                <View style={styles.containerEquipamentList}>
+                    <EquipamentList
+                        {...this.state}
+                        style={styles.equipamentList}
+                        togglePower = {this.togglePower}/>
+                </View>
             </View>
         )
     }
@@ -106,39 +119,57 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
-        backgroundColor: commonStyles.colors.laranja,
+        backgroundColor: commonStyles.colors.branco,
+    },
+    background:{
+        marginTop: -50,
+        backgroundColor: '#FF8C00',
+        borderRadius: 40,
+        paddingBottom: 10
+    },
+    pageTitle:{
+        fontFamily: commonStyles.fontFamilyBold,
+        fontSize: 20,
+        marginLeft: larguraTela*0.022,
+    },
+    iconArea:{
+        flexDirection: 'row',
+        marginHorizontal: 20,
+        justifyContent: 'space-between',
+        marginTop: Platform.OS === 'ios' ? 90 : 90
     },
     containerRoomList:{
-        flex: 0.4,
+        height: alturaTela*0.21,
         flexDirection: "column",
+        marginTop: larguraTela*0.03,
         backgroundColor: commonStyles.colors.branco,
         marginHorizontal: larguraTela*0.05,
-        borderRadius: 20
     },
     containerEquipamentList:{
-        flex: 0.6,
+        height: alturaTela*0.69,
         backgroundColor: commonStyles.colors.branco,
         margin: larguraTela*0.1,
-        marginTop: larguraTela*0.05,
-        marginBottom: alturaTela*0.02,
+        marginTop: larguraTela*0.0,
+        marginBottom: alturaTela*0.00,
         marginLeft: larguraTela*0.05,
         padding: 0,
         flex: 1,
         flexDirection: "column",
         width: larguraTela*0.9,
         height: alturaTela*1,
-        borderRadius: 20
     },
     header:{
-        flex:0.2,
+        height: alturaTela*0.1,
+        marginTop: 10,
         margin:10,
+        marginLeft: larguraTela*0.08,
         marginBottom: 0,
         justifyContent: 'center',
-        alignItems:'center'
+        alignItems:'flex-start'
     },
     titulo:{
-        fontWeight: 'bold',
-        fontSize: 20
+        fontFamily: commonStyles.fontFamilyBold,
+        fontSize: 30
     }
     
 })

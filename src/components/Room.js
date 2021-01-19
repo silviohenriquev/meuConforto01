@@ -28,13 +28,13 @@ function renderRoomSelectedIcon(roomSelected){
     if(roomSelected){
         return(
             <View style={styles.roomSelected}>
-                <FontAwesome5 name="door-open" size={30} color="#FF8C00" />    
+                <FontAwesome5 name="door-open" size={alturaTela*0.04} color="#FF8C00" />    
             </View>
         )
     } else{
         return(
             <View style={styles.roomNotSelected}>
-                <FontAwesome5 name="door-closed" size={30} color="black" />
+                <FontAwesome5 name="door-closed" size={alturaTela*0.04} color="black" />
             </View>
         )
     }
@@ -48,27 +48,29 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text:{
-        fontWeight: 'bold',
+        fontFamily: commonStyles.fontFamily,
         color: 'black',
         fontSize: 15,
     },
     roomSelected: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
+        width: alturaTela*0.09,
+        height: alturaTela*0.09,
+        borderRadius: (alturaTela*0.09)/2,
         backgroundColor: "black",
         alignItems: "center",
         justifyContent: 'center',
         margin: 10,
+        marginBottom: 0
     },
     roomNotSelected:{
-        width: 70,
-        height: 70,
-        borderRadius: 35,
+        width: alturaTela*0.09,
+        height: alturaTela*0.09,
+        borderRadius: (alturaTela*0.09)/2,
         backgroundColor: "#FF8C00",
         alignItems: "center",
         justifyContent: 'center',
         margin: 10,
+        marginBottom: 0
     }
 
 })

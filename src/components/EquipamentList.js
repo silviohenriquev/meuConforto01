@@ -16,6 +16,7 @@ export default class EquipamentList extends Component {
     render() {
         return(
             <View style={styles.container}>
+                <Text style={styles.title}>Devices</Text>
                 <View style={styles.equipamentList}>
                     <FlatList 
                         data={this.props.equipaments}
@@ -34,6 +35,11 @@ const alturaTela = Dimensions.get('window').height
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    title:{
+        marginLeft: larguraTela*0.03,
+        fontFamily: commonStyles.fontFamilyBold,
+        fontSize: 15,
     },
     equipamentList: {
         flex: 1,
