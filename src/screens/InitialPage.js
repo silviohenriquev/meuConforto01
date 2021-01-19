@@ -84,12 +84,12 @@ class InitialPage extends Component {
             <View style={styles.container}>
                 <View style={styles.background}>
                     <View style={styles.iconArea}>
-                        <Text style={styles.pageTitle}>Initial Page</Text>
                         <TouchableOpacity 
                             onPress={() => this.props.navigation.openDrawer()}>
                             <Icon name='bars'
                                 size={20} color={commonStyles.colors.secondary} />
                         </TouchableOpacity>
+                        <Text style={styles.pageTitle}>Initial Page</Text>
                     </View>
                     <View style={styles.header}>
                         <Text style={styles.titulo}>Welcome, Silvio!</Text>
@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
     pageTitle:{
         fontFamily: commonStyles.fontFamilyBold,
         fontSize: 20,
-        marginLeft: larguraTela*0.022,
+        marginLeft: larguraTela*0.05,
     },
     iconArea:{
         flexDirection: 'row',
         marginHorizontal: 20,
-        justifyContent: 'space-between',
+        alignItems: 'center',
         marginTop: Platform.OS === 'ios' ? 90 : 90
     },
     containerRoomList:{

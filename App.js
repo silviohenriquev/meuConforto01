@@ -15,7 +15,8 @@ const getFonts = () => Font.loadAsync({
   'oswald-regular' : require('./assets/fonts/Oswald-Regular.ttf'),
   'oswald-bold' : require('./assets/fonts/Oswald-Bold.ttf'),
   'gotham-regular' : require('./assets/fonts/Gotham-Font/GothamMedium_1.ttf'),
-  'gotham-bold': require('./assets/fonts/Gotham-Font/GothamBold.ttf')
+  'gotham-bold': require('./assets/fonts/Gotham-Font/GothamBold.ttf'),
+  'gotham-light': require('./assets/fonts/Gotham-Font/GothamLight.ttf'),
 })
 
 export default function App() {

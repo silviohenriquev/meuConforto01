@@ -2,6 +2,7 @@
 export default {
     fontFamily: 'gotham-regular',
     fontFamilyBold: 'gotham-bold',
+    fontFamilyLight: 'gotham-light',
     
     colors: {
         branco: 'white',
