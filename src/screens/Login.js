@@ -1,4 +1,8 @@
 import React, {Component} from 'react'
+
+import { connect } from 'react-redux'
+import { login } from '../store/actions/user'
+
 import {
     View,
     Text,
@@ -15,12 +19,20 @@ import googleIcon from '../../assets/imgs/google.png'
 
 class Login extends Component{
     state = {
+        name: 'Temporário',
         email: '',
         password: '',
     }
 
     login = () => {
-        this.props.navigation.navigate('InitialPage')
+        this.props.onLogin({...this.state})
+        //this.props.navigation.navigate('InitialPage')
+        this.props.navigation.reset({
+            index: 0,
+            routes:[{
+                name: 'InitialPage'
+            }]
+        })
     }
 
     render(){
@@ -40,7 +52,7 @@ class Login extends Component{
                         secureTextEntry={true}
                         value={this.state.password}
                         onChangeText={password => this.setState({password})}/>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Página Inicial')} style={styles.buttom}>
+                    <TouchableOpacity onPress={this.login} style={styles.buttom}>
                         <Text style={styles.buttomText}>Sign in with Email ID</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{}} style={styles.buttomGoogle}>
@@ -144,4 +156,12 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: user => dispatch(login(user))
+    }
+}
+
+//export default Login
+
+export default connect(null, mapDispatchToProps)(Login)

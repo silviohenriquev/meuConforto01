@@ -1,15 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import InitialPage from './src/screens/InitialPage'
-import api from './src/services/api';
+import {Provider} from 'react-redux'
+import { AppRegistry } from 'react-native';
 import Routes from './src/routes'
 import * as Font from 'expo-font'
 import { useState } from 'react';
 import {AppLoading} from 'expo'
-import { createAppContainer } from 'react-navigation';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-//import axios from 'axios'
+
+import storeConfig from './src/store/storeConfig'
 
 const getFonts = () => Font.loadAsync({
   'oswald-regular' : require('./assets/fonts/Oswald-Regular.ttf'),
@@ -25,7 +22,9 @@ export default function App() {
 
   if(fontsLoaded){
     return (
-      <Routes />
+      <Provider store = {storeConfig()}>
+        <Routes/>
+      </Provider>
     );
   } else {
     return(
@@ -35,14 +34,4 @@ export default function App() {
       />
     )
   }
-
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
