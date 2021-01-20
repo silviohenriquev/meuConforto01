@@ -26,13 +26,13 @@ class Login extends Component{
 
     login = () => {
         this.props.onLogin({...this.state})
-        //this.props.navigation.navigate('InitialPage')
-        this.props.navigation.reset({
-            index: 0,
-            routes:[{
-                name: 'InitialPage'
-            }]
-        })
+        this.props.navigation.navigate('InitialPage')
+        //this.props.navigation.reset({
+        //    index: 0,
+        //    routes:[{
+        //        name: 'InitialPage'
+        //    }]
+        //})
     }
 
     render(){

@@ -1,9 +1,12 @@
-import React, {Component, useState} from 'react'
+import React, {Component} from 'react'
+
+import { connect } from 'react-redux'
+import { fetchData } from '../store/actions/equipaments'
+
 import {
     StyleSheet,
     View,
     Text,
-    ImageBackground,
     Dimensions,
     TouchableOpacity,
     Platform
@@ -12,70 +15,43 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import commonStyles from '../commonStyles'
 import EquipamentList from '../components/EquipamentList'
 import RoomList from '../components/RoomList'
-import axios from 'axios'
 import api from '../services/api'
 
 import Header from '../components/Header'
 
 class InitialPage extends Component {
 
-    componentDidMount = () => {
-        api.get("/rooms.json")
-            .catch(err=> console.log(err))
-            .then(res => {
-                const data = res.data
-                const rooms = []
-
-                for (let key in data){
-                    rooms.push({
-                        ...data[key],
-                        id: key
-                    })
-                }
-                rooms.forEach(room => {
-                    if(room.roomSelected){
-                        const equipaments = []
-                        const roomSelectedId = room.id
-                        for(let chave in room.equipaments){
-                            equipaments.push({
-                                ...room.equipaments[chave],
-                                id: chave
-                            })
-                        }
-                        //console.log(roomSelectedId)
-                        this.setState({equipaments, roomSelectedId})
-                    }
-                })
-                this.setState({rooms})
-            })
+    componentDidMount= () => {
+        this.props.onFetchData()
+        //const rooms= this.props.rooms
+        //const equipaments = this.props.equipaments
+        //const roomSelectedId = this.props.roomSelectedId
+        //this.setState({rooms, equipaments, roomSelectedId})
     }
 
+
     toggleRoom = roomId => {
-        const lastRoom = false
-        const nowRoom = true
-        api.patch(`/rooms/${this.state.roomSelectedId}.json`, {roomSelected: lastRoom})
-        api.patch(`/rooms/${roomId}.json`, {roomSelected: nowRoom})
+        api.patch(`/rooms/${this.props.roomSelectedId}.json`, {roomSelected: false})
+        api.patch(`/rooms/${roomId}.json`, {roomSelected: true})
             .catch(err=>console.log(err))
             .then(res => {
                 this.componentDidMount()
             })
-
-
     }
 
     togglePower = equipamentId => {
-        api.get(`/rooms/${this.state.roomSelectedId}/equipaments/${equipamentId}.json`)
+        api.get(`/rooms/${this.props.roomSelectedId}/equipaments/${equipamentId}.json`)
             .catch(err => console.log(err))
             .then(res=>{
                 let power = res.data.power
-                console.log(power) 
-                if(power == 'off') power='on'
-                else power='off'
-                api.patch(`/rooms/${this.state.roomSelectedId}/equipaments/${equipamentId}.json`, {power})
+                if(power == 'on') power='off'
+                else power='on'
+                api.patch(`/rooms/${this.props.roomSelectedId}/equipaments/${equipamentId}.json`, {power})
                     .catch(err=>console.log(err))
                     .then(res=>{
                         this.componentDidMount()
                     })
+                console.log(power) 
             })
     }
 
@@ -92,18 +68,18 @@ class InitialPage extends Component {
                         <Text style={styles.pageTitle}>Initial Page</Text>
                     </View>
                     <View style={styles.header}>
-                        <Text style={styles.titulo}>Welcome, Silvio!</Text>
+                        <Text style={styles.titulo}>{this.props.name}</Text>
                     </View>
                 </View>
                 <View style={styles.containerRoomList}>
                     <RoomList
-                        {...this.state}
+                        {...this.props}
                         style={styles.equipamentList}
                         toggleRoom = {this.toggleRoom}/>
                 </View>
                 <View style={styles.containerEquipamentList}>
                     <EquipamentList
-                        {...this.state}
+                        {...this.props}
                         style={styles.equipamentList}
                         togglePower = {this.togglePower}/>
                 </View>
@@ -174,4 +150,21 @@ const styles = StyleSheet.create({
     
 })
 
-export default InitialPage
+const mapStateToProps = ({equipaments}) => {
+    return {
+        rooms: equipaments.rooms,
+        roomSelectedId: equipaments.roomSelectedId,
+        equipaments: equipaments.equipaments
+
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchData: () => dispatch(fetchData())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(InitialPage)
+
+//export default InitialPage
