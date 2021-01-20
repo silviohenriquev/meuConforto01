@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import { connect } from 'react-redux'
-import { login } from '../store/actions/user'
+import { creatUser } from '../store/actions/user'
 
 import {
     View,
@@ -12,46 +12,48 @@ import {
     Image,
 } from 'react-native'
 import commonStyles from '../commonStyles'
-import Icon  from 'react-native-vector-icons/FontAwesome'
-import { color } from 'react-native-reanimated'
-import googleIcon from '../../assets/imgs/google.png'
 
 
-class Login extends Component{
+class SignUp extends Component{
     state = {
         name: '',
         email: '',
         password: '',
     }
 
-    componentDidUpdate = prevProps => {
-        if(prevProps.isLoading && !this.props.isLoading){
-            this.props.navigation.navigate('InitialPage')
-        }
-    }
-
     login = () => {
-        this.props.onLogin({...this.state})
-        //this.props.navigation.reset({
-        //    index: 0,
-        //    routes:[{
-        //        name: 'InitialPage'
-        //    }]
-        //})
+        //this.props.navigation.navigate('Login')
+        this.props.navigation.reset({
+            index: 0,
+            routes:[{
+                name: 'Login'
+            }]
+        })
     }
 
-    signup = () => {
-        this.props.navigation.navigate('SignUp')
+    register = () => {
+        this.props.onCreateUser(this.state)
+        this.props.navigation.reset({
+            index: 0,
+            routes:[{
+                name: 'Login'
+            }]
+        })
     }
+
 
     render(){
         return(
             <View style={styles.container} >
                 <View style={styles.header}>
-                        <Text style={styles.titulo}>Welcome back!</Text>
-                        <Text style={styles.subTitle}>Sign in to your account</Text>
+                        <Text style={styles.titulo}>Create Account</Text>
                 </View>
                 <View style={styles.containerEntries}>
+                    <TextInput placeholder='Name' style={styles.input}
+                        autoFocus={true}
+                        textAlign='left'
+                        value={this.state.name}
+                        onChangeText={name => this.setState({name})}/>
                     <TextInput placeholder='Email' style={styles.input}
                         autoFocus={true} keyboardType='email-address'
                         textAlign='left'
@@ -61,17 +63,15 @@ class Login extends Component{
                         secureTextEntry={true}
                         value={this.state.password}
                         onChangeText={password => this.setState({password})}/>
-                    <TouchableOpacity onPress={this.login} style={styles.buttom}>
-                        <Text style={styles.buttomText}>Sign in with Email ID</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>{}} style={styles.buttomGoogle}>
-                        <Image source={googleIcon} style={styles.googleIcon}/>
-                        <Text style={styles.buttomText}>Sign in with Google</Text>
+                    <TouchableOpacity 
+                        onPress={this.register}
+                        style={styles.buttom}>
+                        <Text style={styles.buttomText}>Sign up</Text>
                     </TouchableOpacity>
                     <View style={styles.signUpContainer}>
-                            <Text style={styles.signUpText}>Don't have an account? </Text>
-                            <TouchableOpacity onPress={this.signup}>
-                                <Text style={styles.signUpButtom}>Sign Up</Text>
+                            <Text style={styles.signUpText}>Have an account? </Text>
+                            <TouchableOpacity onPress={this.login}>
+                                <Text style={styles.signUpButtom}>Login</Text>
                             </TouchableOpacity>
                     </View>
                 </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         flex:1,
     }, 
     header:{
-        flex:0.5,
+        flex:0.3,
         marginTop: -70,
         justifyContent: 'flex-end',
         backgroundColor: '#FF8C00',
@@ -137,6 +137,8 @@ const styles = StyleSheet.create({
         
         fontSize: 25,
         marginLeft: 20,
+
+        marginBottom: 30,
     },
     subTitle:{
         marginTop: 5,
@@ -165,18 +167,10 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = ({user})=> {
-    return {
-        isLoading: user.isLoading
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: user => dispatch(login(user))
+        onCreateUser: user => dispatch((creatUser(user)))
     }
 }
 
-//export default Login
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(SignUp)

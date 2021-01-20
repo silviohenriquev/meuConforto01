@@ -16,7 +16,7 @@ export default class RoomList extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <Text style={styles.title}>Environments</Text>
+                <Text style={styles.title}>Rooms</Text>
                 <View style={styles.roomList}>
                     <FlatList 
                         horizontal={true}

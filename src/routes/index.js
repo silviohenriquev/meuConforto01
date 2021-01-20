@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import InitialPage from '../screens/InitialPage';
 import Login from '../screens/Login'
 import DrawerScreen from '../screens/Drawer'
+import SignUp from '../screens/SignUp'
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ class Routes extends React.Component {
                 <Stack.Navigator
                     headerMode={'none'}>
                     <Stack.Screen name='Login' component={Login}/>
+                    <Stack.Screen name='SignUp' component={SignUp}/>
                     <Stack.Screen name='InitialPage' component={MyDrawer}/>
                 </Stack.Navigator>
             </NavigationContainer>

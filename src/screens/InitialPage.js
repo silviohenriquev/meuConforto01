@@ -9,7 +9,9 @@ import {
     Text,
     Dimensions,
     TouchableOpacity,
-    Platform
+    Platform,
+    KeyboardAvoidingView,
+    ScrollView
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import commonStyles from '../commonStyles'
@@ -23,6 +25,7 @@ class InitialPage extends Component {
 
     componentDidMount= () => {
         this.props.onFetchData()
+        console.log(this.props.id)
         //const rooms= this.props.rooms
         //const equipaments = this.props.equipaments
         //const roomSelectedId = this.props.roomSelectedId
@@ -68,7 +71,7 @@ class InitialPage extends Component {
                         <Text style={styles.pageTitle}>Initial Page</Text>
                     </View>
                     <View style={styles.header}>
-                        <Text style={styles.titulo}>{this.props.name}</Text>
+                        <Text style={styles.titulo}>Welcome, {this.props.name}!</Text>
                     </View>
                 </View>
                 <View style={styles.containerRoomList}>
@@ -145,13 +148,15 @@ const styles = StyleSheet.create({
     },
     titulo:{
         fontFamily: commonStyles.fontFamilyBold,
-        fontSize: 30
+        fontSize: 25
     }
     
 })
 
-const mapStateToProps = ({equipaments}) => {
+const mapStateToProps = ({equipaments, user}) => {
     return {
+        name: user.name,
+        id: user.id,
         rooms: equipaments.rooms,
         roomSelectedId: equipaments.roomSelectedId,
         equipaments: equipaments.equipaments
