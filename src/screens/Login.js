@@ -26,7 +26,12 @@ class Login extends Component{
 
     componentDidUpdate = prevProps => {
         if(prevProps.isLoading && !this.props.isLoading){
-            this.props.navigation.navigate('InitialPage')
+            this.props.navigation.reset({
+                index: 0,
+                routes:[{
+                    name: 'InitialPage'
+                }]
+            })
         }
     }
 
@@ -53,7 +58,7 @@ class Login extends Component{
                 </View>
                 <View style={styles.containerEntries}>
                     <TextInput placeholder='Email' style={styles.input}
-                        autoFocus={true} keyboardType='email-address'
+                        keyboardType='email-address'
                         textAlign='left'
                         value={this.state.email}
                         onChangeText={email => this.setState({email})}/>

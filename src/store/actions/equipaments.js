@@ -1,5 +1,10 @@
-import { GET_DATA, SET_EQPS } from "./actionTypes";
+import { 
+    GET_DATA,
+    SET_EQPS,
+    ADD_DEVICE
+} from "./actionTypes";
 import api from '../../services/api'
+import { exp } from "react-native/Libraries/Animated/src/Easing";
 
 export const getRooms = (rooms, roomSelectedId, equipaments) => {
     return {
@@ -12,10 +17,9 @@ export const getRooms = (rooms, roomSelectedId, equipaments) => {
     }
 }
 
-export const fetchData = () => {
+export const fetchData = userId => {
     return dispatch => {
-        //console.log("oi")
-        api.get("/rooms.json")
+        api.get(`/users/${userId}/rooms.json`)
             .catch(err=> console.log(err))
             .then(res => {
                 const data = res.data

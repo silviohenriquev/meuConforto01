@@ -50,12 +50,11 @@ class SignUp extends Component{
                 </View>
                 <View style={styles.containerEntries}>
                     <TextInput placeholder='Name' style={styles.input}
-                        autoFocus={true}
                         textAlign='left'
                         value={this.state.name}
                         onChangeText={name => this.setState({name})}/>
                     <TextInput placeholder='Email' style={styles.input}
-                        autoFocus={true} keyboardType='email-address'
+                        keyboardType='email-address'
                         textAlign='left'
                         value={this.state.email}
                         onChangeText={email => this.setState({email})}/>

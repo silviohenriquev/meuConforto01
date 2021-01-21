@@ -11,8 +11,6 @@ import { Ionicons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icon
 import { render } from 'react-dom'
 
 export default props => {
-
-    
     return(
         <View style={styles.container}>
             <View style={styles.titleContainer}>
@@ -20,7 +18,7 @@ export default props => {
             </View>
             <View style={styles.iconContainer}>
                 <TouchableWithoutFeedback
-                    onPress={() => {props.togglePower(props.id)}}>
+                    onPress={() => props.togglePower(props.id)}>
                     {renderPowerIcon(props.power)}
                 </TouchableWithoutFeedback>
             </View>
@@ -38,7 +36,7 @@ function renderPowerIcon(power){
         return(
             <FontAwesome name="toggle-off" size={40} color="#FF8C00" />
         )
-    }
+    } 
 }
 const larguraTela = Dimensions.get('window').width
 const alturaTela = Dimensions.get('window').height
