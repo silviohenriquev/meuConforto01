@@ -22,7 +22,6 @@ class SignUp extends Component{
     }
 
     login = () => {
-        //this.props.navigation.navigate('Login')
         this.props.navigation.reset({
             index: 0,
             routes:[{

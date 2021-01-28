@@ -21,7 +21,7 @@ import RoomList from '../components/RoomList'
 import AddDevice from './AddNewDevice'
 import api from '../services/api'
 
-import Header from '../components/Header'
+
 
 class InitialPage extends Component {
 
@@ -31,6 +31,7 @@ class InitialPage extends Component {
 
     componentDidMount= () => {
         this.props.onFetchData(this.props.userId)
+        console.log(this.props.userId)
     }
 
     logout = () => {
@@ -52,18 +53,14 @@ class InitialPage extends Component {
             })
     }
 
-    togglePower = equipamentId => {
-        api.get(`/users/${this.props.userId}/rooms/${this.props.roomSelectedId}/equipaments/${equipamentId}.json`)
-            .catch(err => console.log(err))
+    togglePower = (equipamentId, power, porta, name) => {
+        if(power == 'on') power='off'
+        else power='on'
+        api.put(`/users/${this.props.userId}/rooms/${this.props.roomSelectedId}/equipaments/${equipamentId}.json`, {
+            name, porta, power})
+            .catch(err=>console.log(err))
             .then(res=>{
-                let power = res.data.power
-                if(power == 'on') power='off'
-                else power='on'
-                api.patch(`/users/${this.props.userId}/rooms/${this.props.roomSelectedId}/equipaments/${equipamentId}.json`, {power})
-                    .catch(err=>console.log(err))
-                    .then(res=>{
-                        this.componentDidMount()
-                    })
+                this.componentDidMount()
             })
     }
 
@@ -78,13 +75,24 @@ class InitialPage extends Component {
                 this.componentDidMount(),
                 this.setState({showAddDevice:false}))
     }
+    addNewRoom = room => {
+        api.post(`/users/${this.props.userId}/rooms.json`,{
+            name: room.name,
+            roomSelected: false
+        })
+            .catch(err=> console.log(err))
+            .then(res=>
+                this.componentDidMount(),
+                this.setState({showAddDevice:false}))
+    }
 
     render(){
         return(
             <View style={styles.container}>
                 <AddDevice isVisible={this.state.showAddDevice} 
                     onCancel={()=> this.setState({showAddDevice: false})}
-                    addNewDevice = {this.addNewDevice}/>
+                    addNewDevice = {this.addNewDevice}
+                    addNewRoom = {this.addNewRoom}/>
                 <View style={styles.background}>
                     <View style={styles.iconArea}>
                         <TouchableOpacity 
@@ -200,7 +208,6 @@ const mapStateToProps = ({equipaments, user}) => {
         rooms: equipaments.rooms,
         roomSelectedId: equipaments.roomSelectedId,
         equipaments: equipaments.equipaments
-
     }
 }
 
@@ -212,5 +219,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(InitialPage)
-
-//export default InitialPage

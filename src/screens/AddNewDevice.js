@@ -21,8 +21,9 @@ class AddEquipament extends Component {
     state = {
         name: '',
         porta: null,
-        power: 'off',
     }
+
+
 
     render(){
         return(
@@ -47,8 +48,15 @@ class AddEquipament extends Component {
                         <TouchableOpacity onPress={this.props.onCancel}>
                             <Text style={styles.button}>Cancelar</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>this.props.addNewDevice(this.state)}>
-                            <Text style={styles.button}>Salvar</Text>
+                        <TouchableOpacity onPress={()=>{
+                            this.props.addNewDevice(this.state),
+                            this.setState({name:'', porta:null})}}>
+                            <Text style={styles.button}>Salvar Device</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{
+                            this.props.addNewRoom(this.state),
+                            this.setState({name:'', porta:null})}}>
+                            <Text style={styles.button}>Salvar Room</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -8,7 +8,6 @@ import {
     Dimensions,
 } from 'react-native'
 import Equipament from './Equipament'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import commonStyles from '../commonStyles'
 
 export default class EquipamentList extends Component {

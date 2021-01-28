@@ -7,8 +7,7 @@ import {
     Dimensions,
 } from 'react-native'
 import commonStyles from '../commonStyles'
-import { Ionicons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons'
-import { render } from 'react-dom'
+import { FontAwesome } from '@expo/vector-icons'
 
 export default props => {
     return(
@@ -18,7 +17,7 @@ export default props => {
             </View>
             <View style={styles.iconContainer}>
                 <TouchableWithoutFeedback
-                    onPress={() => props.togglePower(props.id)}>
+                    onPress={() => props.togglePower(props.id, props.power, props.porta, props.name)}>
                     {renderPowerIcon(props.power)}
                 </TouchableWithoutFeedback>
             </View>
