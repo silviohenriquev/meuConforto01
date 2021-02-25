@@ -14,4 +14,4 @@ You will also see any lint errors in the console.
 
 ### `npm install`
 
-This command installs a package, and any packages that it depends on.k
+This command installs a package, and any packages that it depends on.
